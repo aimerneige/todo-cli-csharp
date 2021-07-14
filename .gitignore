@@ -426,3 +426,7 @@ obj/
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,csharp,linux,visualstudiocode
 {"mode":"full","isActive":false}
+
+### mysql databade file ###
+
+todo.db
