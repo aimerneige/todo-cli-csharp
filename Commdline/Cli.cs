@@ -70,67 +70,97 @@ namespace todo_cli.Commdline
                 DeleteTodo();
                 return;
             }
+
+            ListTodos();
         }
 
         private static void HandleParseError(IEnumerable<Error> errs)
         {
-            // just do nothings
+
         }
 
         private static void ListTodos()
         {
-            Console.WriteLine("List Todos");
-            // List<Todo> todos = todoProviders.GetAllTodos().ToList();
-            // foreach (Todo todo in todos)
-            // {
-            //     Console.WriteLine($"{todo.Id} {todo.DoneIcon()} {todo.TimeDisplayResponseDone()}\t{todo.Title}");
-            // }
+            List<Todo> todos = todoProviders.GetAllTodos().ToList();
+            Console.WriteLine("=====================================================");
+            foreach (Todo todo in todos)
+            {
+                Console.WriteLine($"{todo.Id} {todo.DoneIcon()} {todo.TimeDisplayResponseDone()}\t{todo.Title}");
+            }
+            Console.WriteLine("=====================================================");
         }
 
         private static void AddTodo()
         {
-            Console.WriteLine("Add Todos");
-            // string title = "Title";
-            // string detail = "Detail";
-            // // TODO read from terminal
-            // Todo todo = new Todo
-            // {
-            //     Title = title,
-            //     Detail = detail,
-            //     CreateTime = DateTime.Now,
-            //     EndTime = DateTime.Now,
-            //     Done = false
-            // };
-            // todoProviders.InsertTodo(todo);
+            Console.Write("Please Input Title:");
+            var title = Console.ReadLine();
+            Console.Write("Please Input Detail:");
+            var detail = Console.ReadLine();
+            Todo todo = new Todo
+            {
+                Title = title,
+                Detail = detail,
+                CreateTime = DateTime.Now,
+                EndTime = DateTime.Now,
+                Done = false
+            };
+            todoProviders.InsertTodo(todo);
         }
 
         private static void CatTodo()
         {
-            Console.WriteLine("Cat Todos");
-            // int id = 1;
-            // // TODO get id from terminal
-            // Todo todo = todoProviders.GetTodoWithId(id);
-            // Console.WriteLine($"{todo.DoneIcon()} {todo.TimeDisplayResponseDone()}\t{todo.Title}\t");
-            // Console.WriteLine(todo.Detail);
+            ListTodos();
+            Console.Write("Please Input Id:");
+            int id;
+            var id_string = Console.ReadLine();
+            try {
+                id = Int32.Parse(id_string);
+            } catch (FormatException) {
+                Console.WriteLine("Not a int");
+                return;
+            }
+            // TODO wrong id
+            Todo todo = todoProviders.GetTodoWithId(id);
+            Console.WriteLine("=====================================================");
+            Console.WriteLine($"Title:\t{todo.Title}");
+            Console.WriteLine($"{todo.DoneIcon()} {todo.TimeDisplayResponseDone()}");
+            Console.WriteLine($"Detail:\n{todo.Detail}");
+            Console.WriteLine("=====================================================");
         }
 
         private static void DoneTodo()
         {
-            Console.WriteLine("Done Todos");
-            // int id = 1;
-            // // TODO get id from terminal
-            // Todo todo = todoProviders.GetTodoWithId(id);
-            // todo.EndTime = DateTime.Now;
-            // todo.Done = true;
-            // todoProviders.UpdateTodo(id, todo);
+            ListTodos();
+            Console.Write("Please Input Id:");
+            int id;
+            var id_string = Console.ReadLine();
+            try {
+                id = Int32.Parse(id_string);
+            } catch (FormatException) {
+                Console.WriteLine("Not a int");
+                return;
+            }
+            // TODO wrong id
+            Todo todo = todoProviders.GetTodoWithId(id);
+            todo.EndTime = DateTime.Now;
+            todo.Done = true;
+            todoProviders.UpdateTodo(id, todo);
         }
 
         private static void DeleteTodo()
         {
-            Console.WriteLine("Delete Todos");
-            // int id = 1;
-            // // TODO get id from terminal
-            // todoProviders.DeleteTodoWithId(id);
+            ListTodos();
+            Console.Write("Please Input Id:");
+            int id;
+            var id_string = Console.ReadLine();
+            try {
+                id = Int32.Parse(id_string);
+            } catch (FormatException) {
+                Console.WriteLine("Not a int");
+                return;
+            }
+            // TODO wrong id
+            todoProviders.DeleteTodoWithId(id);
         }
     }
 }

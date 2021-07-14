@@ -34,6 +34,7 @@ namespace todo_cli.Database.Provider
         public void DeleteTodoWithId(int id)
         {
             dbContext.Todos.Remove(GetTodoWithId(id));
+            dbContext.SaveChanges();
         }
 
         public void UpdateTodo(int id, Todo newTodo)

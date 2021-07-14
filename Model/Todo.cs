@@ -23,7 +23,7 @@ namespace todo_cli.Model
         public string DoneIcon() =>
             Done ? "✅" : "❌";
 
-        public DateTime TimeDisplayResponseDone() =>
-            Done ? EndTime : CreateTime;
+        public string TimeDisplayResponseDone() =>
+            Done ? $"End at:\t{EndTime}" : $"Create at:\t{CreateTime}";
     }
 }
