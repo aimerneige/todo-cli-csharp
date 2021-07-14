@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
+using todo_cli.Model;
+using todo_cli.Database.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace todo_cli
+namespace todo_cli.Database.Provider
 {
     public class TodoProviders
     {

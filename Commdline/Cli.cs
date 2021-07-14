@@ -1,10 +1,13 @@
 using System;
 using CommandLine;
 using System.Linq;
+using todo_cli.Model;
+using todo_cli.Database.Context;
+using todo_cli.Database.Provider;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace todo_cli
+namespace todo_cli.Commdline
 {
     public class Cli
     {
@@ -71,7 +74,7 @@ namespace todo_cli
 
         private static void HandleParseError(IEnumerable<Error> errs)
         {
-            Console.WriteLine("Wrong args!");
+            // just do nothings
         }
 
         private static void ListTodos()
@@ -80,7 +83,7 @@ namespace todo_cli
             // List<Todo> todos = todoProviders.GetAllTodos().ToList();
             // foreach (Todo todo in todos)
             // {
-            //     Console.WriteLine($"{todo.DoneIcon()} {todo.TimeDisplayResponseDone()}\t{todo.Title}");
+            //     Console.WriteLine($"{todo.Id} {todo.DoneIcon()} {todo.TimeDisplayResponseDone()}\t{todo.Title}");
             // }
         }
 

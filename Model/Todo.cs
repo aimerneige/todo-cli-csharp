@@ -1,6 +1,6 @@
 using System;
 
-namespace todo_cli
+namespace todo_cli.Model
 {
     public class Todo
     {
@@ -20,16 +20,10 @@ namespace todo_cli
             dest.Done = src.Done;
         }
 
-        public string DoneIcon()
-        {
-            if (this.Done) return "✅";
-            return "❌";
-        }
+        public string DoneIcon() =>
+            Done ? "✅" : "❌";
 
-        public DateTime TimeDisplayResponseDone()
-        {
-            if (Done) return EndTime;
-            return CreateTime;
-        }
+        public DateTime TimeDisplayResponseDone() =>
+            Done ? EndTime : CreateTime;
     }
 }

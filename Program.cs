@@ -1,4 +1,6 @@
-﻿namespace todo_cli
+﻿using todo_cli.Commdline;
+
+namespace todo_cli
 {
     class Program
     {
